@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SILVERY MEDIA | Automotive Cinema & Visual Storytelling</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Epic 3-Second Camera Lens & Telemetry Boot Sequence Loader -->
+  <div class="boot-loader-overlay active" id="bootLoader">
+    <canvas class="boot-static-canvas" id="bootStaticCanvas"></canvas>
+    <div class="boot-scanlines"></div>
+
+    <!-- Skip Loading Button -->
+    <button class="boot-skip-btn hover-trigger" id="bootSkipBtn" data-tag="SKIP">
+      <span>SKIP LOADING</span> &#8594;
+    </button>
+
+    <div class="boot-hud-container">
+      <div class="boot-lens-system">
+        <div class="boot-ring outer-ring"></div>
+        <div class="boot-ring middle-ring"></div>
+        <div class="boot-ring inner-ring"></div>
+        <div class="boot-aperture-reticle"></div>
+        <div class="boot-focus-cross"></div>
+        <span class="boot-percent" id="bootPercent">00%</span>
+      </div>
+
+      <div class="boot-terminal-box">
+        <div class="boot-log-line" id="bootLogLine1">> SILVERY_OS KERNEL BOOTING...</div>
+        <div class="boot-log-line highlight" id="bootLogLine2">> CALIBRATING SENSOR ARRAY</div>
+      </div>
+
+      <div class="boot-progress-track">
+        <div class="boot-progress-fill" id="bootProgressFill"></div>
+      </div>
+
+      <div class="boot-system-tag">SILVERY MEDIA // PORTFOLIO V4.2</div>
+    </div>
+  </div>
+
+  <!-- Telemetry Cursor (Desktop Only) -->
+  <div class="telemetry-cursor" id="telCursor">
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+    <div class="cur-tag" id="curTag">FEED: CAM_01</div>
+  </div>
+
+  <!-- Camera Static Noise Canvas -->
+  <canvas class="static-canvas" id="staticCanvas"></canvas>
+
+  <!-- CRT Screen Scanline Overlay -->
+  <div class="crt-scanlines"></div>
+
+  <!-- Header -->
+  <header class="hud-header">
+    <div class="brand">
+      <span class="brand-name">SILVERY</span>
+      <span class="brand-tag">// MEDIA</span>
+    </div>
+
+    <div class="cam-telemetry">
+      <div class="tel-box">
+        <span class="rec-dot"></span>
+        <span class="tel-lbl">LIVE</span>
+      </div>
+      <div class="tel-box">
+        <span class="tel-lbl">FEED ID</span>
+        <span class="tel-val" id="feedIdReadout">CAM_01</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Satellite Uplink Pre-Loader Overlay -->
+  <div class="sat-uplink-modal" id="satUplinkModal" aria-hidden="true">
+    <div class="sat-radar-box">
+      <div class="radar-sweep"></div>
+      <div class="radar-crosshair"></div>
+      <div class="radar-dot"></div>
+    </div>
+    <div class="sat-telemetry-text">
+      <div class="sat-status" id="satStatusLine1">> ACQUIRING ORBITAL SATELLITE...</div>
+      <div class="sat-status" id="satStatusLine2">> ESTABLISHING ENCRYPTED LINK</div>
+      <div class="sat-progress-bar"><div class="sat-progress-fill" id="satProgressFill"></div></div>
+    </div>
+  </div>
+
+  <!-- Persistent Dispatch Floating Trigger -->
+  <button class="dispatch-btn hover-trigger" id="openDispatchBtn" data-tag="DISPATCH">
+    <span class="pulse-beacon"></span>
+    <span class="btn-lbl">DISPATCH</span>
+    <span class="sla-tag">24H SLA</span>
+  </button>
+
+  <!-- Viewport Feed Stage -->
+  <main class="viewport-stage" id="viewportStage">
+    
+    <div class="feed-stack" id="feedStack"></div>
+
+    <div class="viewfinder-frame">
+      <div class="frame-bracket top-left"></div>
+      <div class="frame-bracket top-right"></div>
+      <div class="frame-bracket bottom-left"></div>
+      <div class="frame-bracket bottom-right"></div>
+      
+      <div class="center-target">
+        <div class="target-line h"></div>
+        <div class="target-line v"></div>
+      </div>
+
+      <div class="viewfinder-meta">
+        <span>4K RAW // 120 FPS</span>
+        <span id="timestampTag">00:00:00:00</span>
+      </div>
+
+      <!-- Scroll Hint Overlay -->
+      <div class="scroll-navigation-hint">
+        <span class="hint-arrow">&#8595;</span>
+        <span class="hint-text">SCROLL OR USE ARROW KEYS TO SWITCH FEEDS</span>
+      </div>
+    </div>
+
+    <!-- Active Shoot Title Card with Category Tag -->
+    <div class="shoot-title-card">
+      <div class="meta-badge-row">
+        <span class="client-badge" id="heroClient">SILVERY MEDIA SHOWCASE</span>
+        <span class="category-badge" id="heroCategory">PHOTOSHOOT</span>
+      </div>
+      <h1 class="project-title" id="heroTitle">PORSCHE 992 GT3RS</h1>
+      
+      <button class="inspect-btn primary-cta hover-trigger" id="inspectBtn" data-tag="OPEN GALLERY">
+        <span class="cta-pulse-dot"></span>
+        <span class="cta-text">EXPLORE FULL GALLERY</span>
+        <svg class="cta-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Integrated Sleek Bottom Control Dock -->
+    <div class="hud-bottom-dock">
+      <button class="dock-btn hover-trigger" id="dockPrevBtn" data-tag="PREV FEED">&#8592;</button>
+      
+      <!-- Quick Telemetry Scrubber Bar with Floating Preview Tooltip -->
+      <div class="dock-scrubber-wrapper" id="dockScrubberWrapper">
+        <div class="scrubber-preview-tooltip" id="scrubberTooltip">CAM_01 // PORSCHE 992 GT3RS</div>
+
+        <div class="dock-scrubber-track hover-trigger" id="dockTrack" data-tag="HOLD & SCRUB">
+          <div class="dock-track-fill" id="dockTrackFill"></div>
+        </div>
+        <div class="dock-counter">
+          <span class="dock-curr" id="dockCurrent">01</span>
+          <span class="dock-sep">/</span>
+          <span class="dock-tot" id="dockTotal">12</span>
+        </div>
+      </div>
+
+      <button class="dock-btn hover-trigger" id="dockNextBtn" data-tag="NEXT FEED">&#8594;</button>
+      
+      <button class="dock-btn index-btn hover-trigger" id="openIndexBtn" data-tag="ALL PROJECTS">
+        <span class="grid-icon">::</span>
+        <span>INDEX</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Full Project Directory Drawer -->
+  <div class="index-drawer" id="indexDrawer" aria-hidden="true">
+    <div class="index-drawer-header">
+      <div class="index-title">
+        <h2>SILVERY MEDIA DIRECTORY</h2>
+        <span id="totalProjectsBadge">12 PROJECTS LOADED</span>
+      </div>
+      <button class="drawer-close-btn" id="closeIndexBtn">&times;</button>
+    </div>
+
+    <div class="index-grid" id="indexGrid"></div>
+  </div>
+
+  <!-- Conventional Project View Modal -->
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <button class="modal-close hover-trigger" id="closeProjectBtn" data-tag="CLOSE">&times;</button>
+
+    <button class="scroll-top-btn hover-trigger" id="scrollTopBtn" data-tag="TOP">&#8593;</button>
+
+    <div class="project-content-container">
+      <header class="project-header">
+        <div class="project-meta-grid">
+          <div class="meta-item">
+            <span class="meta-lbl">WHO IT WAS FOR</span>
+            <span class="meta-val" id="modalClient">--</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-lbl">DATE SHOOT</span>
+            <span class="meta-val" id="modalDate">--</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-lbl">LOCATION</span>
+            <span class="meta-val" id="modalLocation">--</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-lbl">SHOOT TYPE</span>
+            <span class="meta-val highlight-category" id="modalCategory">PHOTOSHOOT</span>
+          </div>
+        </div>
+
+        <h1 class="project-headline" id="modalTitle">Project Title</h1>
+        <p class="project-summary" id="modalDesc">Detailed photography showcase.</p>
+      </header>
+
+      <div class="project-photo-grid" id="projectPhotoGrid"></div>
+
+      <!-- Recommended Live Feed Section -->
+      <section class="related-projects-section">
+        <div class="related-header">
+          <span class="related-tag">// RECOMMENDED FEEDS</span>
+          <h3 class="related-title">YOU MIGHT ALSO LIKE</h3>
+        </div>
+        <div class="related-projects-grid" id="relatedProjectsGrid"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+    <button class="lightbox-close hover-trigger" id="closeLightboxBtn" data-tag="CLOSE">&times;</button>
+    <button class="lightbox-nav lightbox-prev hover-trigger" id="lightboxPrevBtn" data-tag="PREV">&#8592;</button>
+    <button class="lightbox-nav lightbox-next hover-trigger" id="lightboxNextBtn" data-tag="NEXT">&#8594;</button>
+    
+    <div class="lightbox-viewport">
+      <img src="" alt="Fullscreen View" id="lightboxImage" class="lightbox-img">
+    </div>
+
+    <div class="lightbox-counter" id="lightboxCounter">1 / 5</div>
+  </div>
+
+  <!-- Priority Dispatch Terminal Drawer -->
+  <div class="dispatch-drawer" id="dispatchDrawer">
+    <button class="drawer-close hover-trigger" id="closeDispatchBtn" data-tag="CLOSE">&times;</button>
+
+    <div class="dispatch-header">
+      <div class="live-signal">
+        <span class="signal-dot"></span> DIRECT SATELLITE LINK ESTABLISHED
+      </div>
+      <h2>COMMISSION A SHOOT</h2>
+      <p>Direct alert routed straight to personal device via satellite relay.</p>
+    </div>
+
+    <div class="sla-metrics">
+      <div class="sla-card">
+        <span class="sla-lbl">AVG RESPONSE TIME</span>
+        <span class="sla-val highlight">24 HOURS</span>
+      </div>
+      <div class="sla-card">
+        <span class="sla-lbl">LOCAL TIME</span>
+        <span class="sla-val" id="localClock">12:00 PM CEST</span>
+      </div>
+    </div>
+
+    <form class="dispatch-form" id="dispatchForm">
+      <div class="field-row">
+        <label>CLIENT / ORGANIZATION</label>
+        <input type="text" id="senderName" placeholder="e.g. Porsche Cars NA / John Doe" required>
+      </div>
+      <div class="field-row">
+        <label>DIRECT EMAIL / PHONE</label>
+        <input type="email" id="senderContact" placeholder="john@domain.com" required>
+      </div>
+      <div class="field-row">
+        <label>PROJECT SCOPE & DATES</label>
+        <textarea id="senderScope" rows="3" placeholder="Vehicle details, shoot location, target timeline..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-dispatch-btn hover-trigger" data-tag="TRANSMIT">
+        TRANSMIT DISPATCH
+      </button>
+    </form>
+
+    <div class="terminal-status" id="terminalStatus">
+      <div class="term-line" id="termLine1">> Terminal online. Satellite uplink established...</div>
+      <div class="term-line" id="termLine2"></div>
+    </div>
+  </div>
+
+  <script src="code.js"></script>
+</body>
+</html>
