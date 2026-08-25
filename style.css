@@ -226,7 +226,7 @@ body {
   line-height: 1.65;
 }
 
-/* --- SECTION 02: VISUAL IMPRESSIONS (PERFECT ALTERNATING 12-COL RHYTHM) --- */
+/* --- SECTION 02: VISUAL IMPRESSIONS (STAGGERED MASONRY - ZERO CROPPING) --- */
 .impressions-section {
   padding-bottom: 100px;
   margin-bottom: 100px;
@@ -234,14 +234,13 @@ body {
 }
 
 .impressions-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 36px;
-  row-gap: 56px;
-  align-items: center;
+  column-count: 2;
+  column-gap: 48px;
 }
 
 .impression-item {
+  break-inside: avoid;
+  margin-bottom: 48px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -255,16 +254,15 @@ body {
 
 .impression-item img {
   width: 100%;
-  height: 100%;
+  height: auto; /* Uses natural photo dimensions so neither landscape nor portrait is cropped */
   display: block;
-  object-fit: cover;
   filter: grayscale(100%);
   transition: transform 0.8s var(--transition-smooth), filter 0.4s ease;
 }
 
 .impression-item:hover img {
   filter: grayscale(0%);
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .impression-tag {
@@ -285,37 +283,6 @@ body {
 
 .impression-item:hover .impression-tag {
   opacity: 1;
-}
-
-/* 
-  Guaranteed 12-Column Math:
-  - Item 1 (Landscape 7) + Item 2 (Portrait 5) = 12 cols (Row 1)
-  - Item 3 (Portrait 5) + Item 4 (Landscape 7) = 12 cols (Row 2)
-*/
-.impression-item:nth-child(4n + 1) {
-  grid-column: span 7;
-  aspect-ratio: 16 / 10;
-}
-
-.impression-item:nth-child(4n + 2) {
-  grid-column: span 5;
-  aspect-ratio: 4 / 5;
-}
-
-.impression-item:nth-child(4n + 3) {
-  grid-column: span 5;
-  aspect-ratio: 4 / 5;
-}
-
-.impression-item:nth-child(4n + 4) {
-  grid-column: span 7;
-  aspect-ratio: 16 / 10;
-}
-
-/* If there is a 5th odd item, it spans the full width as a cinematic banner */
-.impression-item:nth-child(odd):last-child {
-  grid-column: span 12;
-  aspect-ratio: 21 / 9;
 }
 
 /* --- SECTION 03: LATEST WORK & PORTFOLIO --- */
@@ -921,16 +888,12 @@ body {
   }
 
   .impressions-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    column-count: 1;
+    column-gap: 0;
   }
 
-  .impression-item.is-landscape,
-  .impression-item.is-portrait,
-  .impression-item.is-square,
-  .impression-item.is-wide {
-    grid-column: span 1;
-    max-width: 100%;
+  .impression-item {
+    margin-bottom: 24px;
   }
 
   .project-card {

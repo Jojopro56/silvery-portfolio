@@ -88,7 +88,7 @@ function setupHeroFeaturedStory() {
 }
 
 /**
- * 2. VISUAL IMPRESSIONS / ALTERNATING GRID
+ * 2. VISUAL IMPRESSIONS / MASONRY GRID
  */
 function renderVisualImpressions() {
   const container = document.getElementById("impressionsContainer");
@@ -193,7 +193,7 @@ function initAllProjectsView() {
   `).join("");
 
   const renderFilteredProjects = (cat) => {
-    const filtered = cat === "ALL"
+    const filtered = cat === "ALL" 
       ? [...SILVERY_PROJECTS].reverse()
       : [...SILVERY_PROJECTS].filter(p => p.category.toUpperCase() === cat).reverse();
 
@@ -538,7 +538,6 @@ function initScrollObserver() {
 
   elements.forEach((el) => {
     observer.observe(el);
-    // Immediate fallback: If element is already in the viewport upon load, reveal immediately
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight) {
       el.classList.add("is-visible");
