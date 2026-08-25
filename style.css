@@ -226,7 +226,7 @@ body {
   line-height: 1.65;
 }
 
-/* --- SECTION 02: VISUAL IMPRESSIONS (STAGGERED MASONRY - ZERO CROPPING) --- */
+/* --- SECTION 02: VISUAL IMPRESSIONS (MASONRY) --- */
 .impressions-section {
   padding-bottom: 100px;
   margin-bottom: 100px;
@@ -254,7 +254,7 @@ body {
 
 .impression-item img {
   width: 100%;
-  height: auto; /* Uses natural photo dimensions so neither landscape nor portrait is cropped */
+  height: auto;
   display: block;
   filter: grayscale(100%);
   transition: transform 0.8s var(--transition-smooth), filter 0.4s ease;
@@ -442,7 +442,7 @@ body {
   color: var(--text-muted);
 }
 
-/* --- SCROLL TO TOP BUTTONS (BOTTOM RIGHT) --- */
+/* --- SCROLL TO TOP BUTTONS --- */
 .scroll-top-btn,
 .modal-scroll-top-btn {
   position: fixed;
@@ -841,36 +841,112 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
+/* --- MOBILE & RESPONSIVE POLISH --- */
+/* --- MOBILE & RESPONSIVE POLISH --- */
 @media (max-width: 900px) {
   .page-container {
     padding: 24px 20px 60px 20px;
   }
 
+  /* 1. Header: Balanced 2-Row Editorial Grid */
   .editorial-header {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand archive"
+      "discipline discipline";
+    row-gap: 14px;
+    column-gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-light);
   }
 
-  .meta-col.center, 
-  .meta-col.right {
+  .editorial-header .meta-col:first-child {
+    grid-area: brand;
     text-align: left;
   }
 
+  .editorial-header .meta-col.right {
+    grid-area: archive;
+    text-align: right;
+  }
+
+  .editorial-header .meta-col.center {
+    grid-area: discipline;
+    text-align: left;
+    border-top: 1px solid var(--border-light);
+    padding-top: 12px;
+  }
+
+  /* 2. Brand Title Block */
   .title-block {
-    padding: 48px 0 40px 0;
+    padding: 40px 0 28px 0;
+  }
+
+  .main-title {
+    font-size: clamp(3.2rem, 15vw, 4.8rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+  }
+
+  .main-title .indent {
+    margin-left: clamp(1rem, 5vw, 2rem);
   }
 
   .sub-badge {
     position: static;
-    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-light);
+    padding-top: 14px;
+    margin-top: 24px;
+    font-size: 0.85rem;
   }
 
-  .manifesto-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  /* 3. Hero Showcase */
+  .hero-showcase {
     margin-bottom: 60px;
+  }
+
+  .hero-image-frame {
+    height: 52vh;
+    min-height: 360px;
+  }
+
+  .image-meta-overlay {
+    flex-direction: column;
+    gap: 4px;
+    bottom: 14px;
+    left: 16px;
+    right: 16px;
+    font-size: 0.65rem;
+  }
+
+  /* 4. Section 01: Side-by-Side Header & Full-Width Portrait */
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 8px 12px;
     padding-bottom: 60px;
+    margin-bottom: 60px;
+  }
+
+  .grid-index {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .grid-category {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .grid-content {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 20px;
   }
 
   .creator-layout {
@@ -879,12 +955,19 @@ body {
   }
 
   .creator-portrait-frame {
-    max-width: 320px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .creator-text-block {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  /* 5. Impressions Grid: Full Width Single Column */
+  .impressions-section {
+    padding-bottom: 60px;
+    margin-bottom: 60px;
   }
 
   .impressions-grid {
@@ -894,6 +977,12 @@ body {
 
   .impression-item {
     margin-bottom: 24px;
+    width: 100%;
+  }
+
+  /* 6. Portfolio Feed */
+  .projects-feed {
+    gap: 48px;
   }
 
   .project-card {
@@ -901,10 +990,17 @@ body {
     gap: 20px;
   }
 
+  /* 7. Footer & Floating Buttons */
+  .editorial-footer {
+    margin-top: 80px;
+    padding-top: 40px;
+  }
+
   .footer-cta {
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: 28px;
+    margin-bottom: 48px;
   }
 
   .footer-meta {
