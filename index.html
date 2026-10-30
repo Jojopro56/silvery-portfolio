@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SILVERY MEDIA</title>
-  
+  <base href="/" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- Film Grain Overlay -->
@@ -22,7 +27,7 @@
   </button>
 
   <main class="page-container">
-    
+
     <!-- Editorial Header -->
     <header class="editorial-header reveal-element">
       <div class="meta-col">
@@ -53,18 +58,29 @@
       </div>
     </section>
 
-    <!-- Hero Showcase (Latest Project) -->
+    <!-- Hero Showcase (3 Featured Projects Loop) -->
     <section class="hero-showcase reveal-element" id="heroSection">
       <div class="hero-image-frame" id="heroFrame" role="button" tabindex="0" title="Click to view full shoot">
-        <img 
-          src="" 
-          alt="Featured Automotive Story" 
-          class="hero-img"
-          id="heroImage"
-        />
+        <!-- Top-Left 3 Stripes Indicator -->
+        <div class="hero-stripes-indicator" id="heroStripes">
+          <span class="hero-stripe active" data-slide-index="0" title="Featured 01"></span>
+          <span class="hero-stripe" data-slide-index="1" title="Featured 02"></span>
+          <span class="hero-stripe" data-slide-index="2" title="Featured 03"></span>
+        </div>
+
+        <img src="" alt="Featured Automotive Story" class="hero-img" id="heroImage" />
+
+        <!-- White Fade Veil for Transitions -->
+        <div class="hero-white-fade" id="heroWhiteFade"></div>
+
         <div class="image-meta-overlay">
           <span id="heroStoryTag">FEATURED PROJECT &mdash; LOADING...</span>
           <span id="heroStorySub">VIEW ARCHIVE &rarr;</span>
+        </div>
+
+        <!-- 7-Second Horizontal Progress Bar -->
+        <div class="hero-progress-track">
+          <div class="hero-progress-bar" id="heroProgressBar"></div>
         </div>
       </div>
     </section>
@@ -73,16 +89,11 @@
     <section class="manifesto-grid reveal-element">
       <div class="grid-index">01 /</div>
       <div class="grid-category">ABOUT THE CREATOR</div>
-      
+
       <div class="grid-content creator-layout">
         <!-- Portrait Image Slot -->
         <div class="creator-portrait-frame">
-          <img 
-            src="assets/Joey/1.jpg" 
-            alt="Creator Portrait" 
-            class="creator-img"
-            id="creatorPortrait"
-          />
+          <img src="assets/Joey/1.jpg" alt="Creator Portrait" class="creator-img" id="creatorPortrait" />
           <div class="creator-caption">
             <span>FOUNDER / PRODUCER</span>
             <span>SILVERY MEDIA</span>
@@ -94,14 +105,18 @@
           <div class="text-column">
             <h3 class="column-heading">The Philosophy</h3>
             <p>
-              Silvery Media is an independent automotive content brand dedicated to framing pure mechanical form. 
-              Every vehicle speaks a unique design language. Through custom, on-location cinematography and ultra-sharp stills, I translate mechanical engineering into aesthetic art.
+              Silvery Media is an independent automotive content brand dedicated to framing pure mechanical form.
+              Every vehicle speaks a unique design language. Through custom, on-location cinematography and ultra-sharp
+              stills, I translate mechanical engineering into art.
             </p>
           </div>
           <div class="text-column">
             <h3 class="column-heading">Background</h3>
             <p>
-              I've driven many different cars throughout my career, and each one of them evokes a different emotion within me. With my background in Multimedia Design and Visual Storytelling, I give shape to these feelings.
+              My fascination with cars started long before I picked up a camera.
+              Throughout my career, I've had the opportunity to drive a wide variety of cars.
+              With a background in Multimedia Design and Visual Storytelling, I found a way to combine two things I
+              genuinely care about: driving cars and creating imagery.
             </p>
           </div>
         </div>
@@ -159,11 +174,12 @@
       <span class="mono-label">GET IN TOUCH</span>
       <button class="drawer-close" id="drawerClose">&times; CLOSE</button>
     </div>
-    
+
     <div class="drawer-body">
       <h2 class="drawer-title">COMMISSION INQUIRY</h2>
-      <p class="drawer-subtitle">Available worldwide for automotive commercial productions, media shoots, and private collector archives.</p>
-      
+      <p class="drawer-subtitle">Available worldwide for automotive commercial productions, media shoots, and private
+        collector archives.</p>
+
       <form action="https://formsubmit.co/jrs.vdlinden@gmail.com" method="POST" class="inquiry-form">
         <input type="hidden" name="_subject" value="New Commission Inquiry — Silvery Media">
         <input type="hidden" name="_captcha" value="true">
@@ -191,7 +207,8 @@
 
         <div class="form-group">
           <label for="message" class="mono-label">PROJECT DETAILS / TIMELINE *</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Tell me about the vehicle, target location, date, and overall vision..."></textarea>
+          <textarea id="message" name="message" rows="5" required
+            placeholder="Tell me about the vehicle, target location, date, and overall vision..."></textarea>
         </div>
 
         <button type="submit" class="form-submit-btn">SEND INQUIRY &rarr;</button>
@@ -214,7 +231,7 @@
       <div class="modal-header">
         <span class="mono-label">INDEX / COMPLETE REPOSITORY</span>
         <h2>ALL PROJECTS</h2>
-        
+
         <!-- Category Filter Buttons -->
         <div class="category-filters" id="categoryFilters"></div>
       </div>
@@ -233,7 +250,7 @@
     <button id="modalScrollTopBtn" class="modal-scroll-top-btn" title="Scroll to top" aria-label="Scroll to top">
       &uarr; TOP
     </button>
-    
+
     <div class="modal-content">
       <div class="modal-header">
         <span class="mono-label" id="modalProjectCategory">CATEGORY</span>
@@ -248,19 +265,20 @@
   <!-- Interactive Lightbox / Carousel View -->
   <div class="lightbox-overlay" id="lightboxModal" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" title="Close (Esc)">&times;</button>
-    
+
     <button class="lightbox-arrow prev" id="lightboxPrev" title="Previous (&larr;)">&#10094;</button>
-    
+
     <div class="lightbox-stage">
       <img src="" alt="Expanded View" id="lightboxImage" />
       <div class="lightbox-footer">
         <span id="lightboxCounter" class="mono-label">01 / 01</span>
       </div>
     </div>
-    
+
     <button class="lightbox-arrow next" id="lightboxNext" title="Next (&rarr;)">&#10095;</button>
   </div>
 
   <script src="code.js"></script>
 </body>
+
 </html>

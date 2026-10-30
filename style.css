@@ -1054,3 +1054,124 @@ body {
     right: 16px;
   }
 }
+
+/* Keep anchor tags inside project cards styled identically to original spans */
+.project-explore-btn {
+  color: inherit;
+}
+
+/* Smooth entrance for progressively appended gallery images */
+.progressive-gallery-img {
+  animation: fadeIn 0.45s var(--transition-smooth);
+}
+
+/* --- MOBILE & TOUCH CENTER-VIEWPORT COLOR TRANSITION --- */
+@media (max-width: 900px), (hover: none) {
+  .hero-image-frame.in-center-view .hero-img {
+    transform: scale(1.025);
+    filter: grayscale(0%) contrast(100%);
+  }
+
+  .creator-portrait-frame.in-center-view .creator-img {
+    filter: grayscale(0%);
+  }
+
+  .impression-item.in-center-view img {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+  }
+
+  .impression-item.in-center-view .impression-tag {
+    opacity: 1;
+  }
+
+  .project-card.in-center-view .project-thumb img {
+    transform: scale(1.03);
+    filter: grayscale(0%);
+  }
+
+  .modal-gallery-grid img.in-center-view {
+    filter: grayscale(0%);
+    transform: scale(1.01);
+  }
+}
+
+/* --- HERO 3-PROJECT LOOP: STRIPES, WHITE FADE & PROGRESS BAR --- */
+.hero-stripes-indicator {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.hero-stripe {
+  display: block;
+  width: 34px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: height 0.35s var(--transition-smooth), background-color 0.35s ease, width 0.35s var(--transition-smooth);
+}
+
+.hero-stripe.active {
+  height: 7px; /* Thicker stripe for the active project (one TWO three) */
+  width: 42px;
+  background-color: #ffffff;
+}
+
+.hero-white-fade {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.45s ease-in-out;
+}
+
+.hero-white-fade.fading-white {
+  opacity: 1;
+}
+
+.image-meta-overlay {
+  z-index: 4;
+}
+
+.hero-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 5;
+  overflow: hidden;
+}
+
+.hero-progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 900px) {
+  .hero-stripes-indicator {
+    top: 16px;
+    left: 16px;
+    gap: 8px;
+  }
+
+  .hero-stripe {
+    width: 26px;
+  }
+
+  .hero-stripe.active {
+    width: 34px;
+    height: 6px;
+  }
+}
